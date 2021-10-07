@@ -1,5 +1,8 @@
 <form class="uk-search uk-search-default uk-width-1-1">
   <span class="uk-search-icon-flip" uk-search-icon></span>
-  <CaFieldSelectorField/>
+  {{#each this.selectors as |selector|}}
+    in here: {{selector.selected.value}}
+    <CaFieldSelectorField @selector={{selector}} @onSelect={{this.select}}/>
+  {{/each}}
 </form>
 {{yield}}

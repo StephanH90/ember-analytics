@@ -1,0 +1,17 @@
+<h1>in report editor</h1>
+
+<h4>{{t "caluma.analytics.report-editor.field-selectors"}}</h4>
+
+{{#each this.fieldSelectors as |fieldSelector|}}
+  <CaFieldSelector @fields={{this.fields}}/>
+{{/each}}
+
+<button
+  data-test-add-field-selector
+  type="button"
+  class="uk-icon-button"
+  uk-icon="plus"
+  title={{t "caluma.analytics.report-editor.add-field-selector"}}
+  {{on "click" this.addFieldSelector}}
+/>
+{{yield}}
