@@ -1,19 +1,10 @@
-{{!-- <input
-  class="uk-search-input"
-  type="search"
-  placeholder="{{t "caluma.form-builder.global.search"}}..."
-  aria-label="{{t "caluma.form-builder.global.search"}}"
-  value=""
-/> --}}
-{{@selector.selected.label }} - {{@selector.selected.value}}
-{{log @selector}}
-{{log @selector.options}}
-{{log array 'test' 'test2'}}
-<PowerSelect
-  @options={{@selector.options}}
-  @selected={{this.selectedOption}}
-  @onChange={{this.onSelect}}
-  as |option|
->
-  {{option.label}}
-</PowerSelect>
+<div class="uk-child-width-auto">
+  <PowerSelect
+    @options={{@selector.options}}
+    @selected={{this.selectedOption}}
+    @onChange={{this.onSelect}}
+    as |option|
+  >
+    {{option.label}}
+  </PowerSelect>
+</div>

@@ -1,7 +1,7 @@
+import { A } from '@ember/array';
+import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import { A } from '@ember/array';
 
 // const selectors = [
 //   {
@@ -45,12 +45,25 @@ export default class CaFieldSelectorComponent extends Component {
   select(selector, newVal) {
     const s = this.selectors.find((s) => s.slug === selector.slug);
     s.selected = s.options.find((o) => o.value === newVal.value);
-    const oldPath = this.path;
-    this.selectors.pushObject({
-      options: this.optionsForPath(this.path),
-      selected: {},
-      slug: oldPath,
-    });
+
+    this.removeTrailingSelectors(s);
+
+    const options = this.optionsForPath(this.path);
+
+    if (options.length > 0) {
+      // we have not arrived at the end of the tree so we need to add another selector
+      this.selectors.pushObject({
+        options: this.optionsForPath(this.path),
+        selected: {},
+        slug: this.path,
+      });
+    }
+  }
+
+  removeTrailingSelectors(selector) {
+    this.selectors = A(
+      this.selectors.slice(0, this.selectors.indexOf(selector) + 1)
+    );
   }
 
   get path() {

@@ -11,15 +11,26 @@ module.exports = {
     },
   },
   plugins: ['ember'],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['@adfinis-sygroup/eslint-config'],
   env: {
+    es6: true,
     browser: true,
   },
-  rules: {},
+  rules: {
+    'ember/no-jquery': 'error',
+    'ember/no-mixins': 'warn',
+    'ember/no-new-mixins': 'warn',
+    'ember/no-observers': 'warn',
+    'ember/no-get': 'warn',
+    'ember/no-classic-components': 'warn',
+    'ember/no-classic-classes': 'warn',
+    'ember/require-tagless-components': 'warn',
+    'ember/no-actions-hash': 'warn',
+    'ember/no-component-lifecycle-hooks': 'warn',
+  },
+  settings: {
+    'import/internal-regex': '^(@projectcaluma|ember-caluma)/',
+  },
   overrides: [
     // node files
     {
