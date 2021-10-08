@@ -2,7 +2,7 @@
 
 <h4>{{t "caluma.analytics.report-editor.field-selectors"}}</h4>
 
-{{#each this.fieldSelectors as |fieldSelector|}}
+{{#each this.fieldSelectors}}
   <CaFieldSelector @fields={{this.fields}}/>
 {{/each}}
 
@@ -14,4 +14,5 @@
   title={{t "caluma.analytics.report-editor.add-field-selector"}}
   {{on "click" this.addFieldSelector}}
 />
+
 {{yield}}
