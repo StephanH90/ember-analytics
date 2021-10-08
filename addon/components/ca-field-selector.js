@@ -40,6 +40,8 @@ export default class CaFieldSelectorComponent extends Component {
   @tracked selectors = A([
     { options: this.optionsForPath(''), selected: {}, slug: '' },
   ]);
+  @tracked alias;
+  @tracked showInOutput = true;
 
   @action
   select(selector, newVal) {
@@ -78,5 +80,11 @@ export default class CaFieldSelectorComponent extends Component {
 
   get isLastSelectorEndOfPath() {
     return this.selectors[this.selectors.length]?.selected?.isEnd;
+  }
+
+  @action
+  setShowInOutput(event) {
+    // Todo: This returns "false" or "true" not booleans
+    this.showInOutput = event.target.value;
   }
 }
