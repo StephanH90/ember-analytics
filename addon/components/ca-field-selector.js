@@ -45,11 +45,16 @@ export default class CaFieldSelectorComponent extends Component {
   select(selector, newVal) {
     const s = this.selectors.find((s) => s.slug === selector.slug);
     s.selected = s.options.find((o) => o.value === newVal.value);
+    const oldPath = this.path;
+    this.selectors.pushObject({
+      options: this.optionsForPath(this.path),
+      selected: {},
+      slug: oldPath,
+    });
   }
 
   get path() {
-    return this.selectors.map((s) => s.selected.value).join('.');
-    // return this.selectors.map((s) => s.toLowerCase()).join('.'); // Todo: replace with proper slugify
+    return this.selectors.map((s) => s.selected.value.toLowerCase()).join('.');
   }
 
   optionsForPath(path) {
